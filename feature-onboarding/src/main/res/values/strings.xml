@@ -2,6 +2,7 @@
 <resources>
     <string name="skip">Skip</string>
     <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
     <string name="welcome_habits">WELCOME TO \n Monumental habits</string>
     <string name="monumental_habits">We can <font color ='#FC9D45'>help</font> you to be a better \n version of <font color ='#FC9D45'>yourself.</font></string>
 </resources>
