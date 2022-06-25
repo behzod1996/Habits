@@ -169,6 +169,13 @@ fun DependencyHandler.viewPager2() {
 fun DependencyHandler.roundImageView() {
     implementation(Dependency.roundImageView)
 }
+
+fun DependencyHandler.room() {
+    implementation(Dependency.room)
+    implementation(Dependency.roomCoroutine)
+    kapt(Dependency.roomKapt)
+}
+
 private fun DependencyHandler.implementation(depName: String) {
     add("implementation", depName)
 }
