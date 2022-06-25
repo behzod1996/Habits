@@ -61,4 +61,7 @@ object Dependency {
         "org.jetbrains.kotlinx:kotlinx-serialization-json:${Version.serializationVersion}"
     const val viewPager = "androidx.viewpager2:viewpager2:${Version.viewPagerVersion}"
     const val roundImageView = "com.makeramen:roundedimageview:${Version.roundImageViewVersion}"
+    const val room = "androidx.room:room-runtime:${Version.roomVersion}"
+    const val roomKapt = "androidx.room:room-compiler:${Version.roomVersion}"
+    const val roomCoroutine = "androidx.room:room-ktx:${Version.roomVersion}"
 }
