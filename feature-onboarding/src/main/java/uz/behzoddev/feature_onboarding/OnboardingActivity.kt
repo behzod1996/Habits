@@ -1,68 +1,116 @@
 package uz.behzoddev.feature_onboarding
 
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import uz.behzoddev.common_ui.extensions.hide
+import uz.behzoddev.common_ui.extensions.show
 import uz.behzoddev.feature_onboarding.databinding.ActivityOnboardingBinding
 
 @AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOnboardingBinding
-    private lateinit var viewPager: OnboardingViewPagerAdapter
+    private lateinit var mViewPager: OnboardingViewPagerAdapter
+    private val viewModel: OnboardingViewModel by viewModels()
 
-    private val listScreen: MutableList<OnboardingItem> = ArrayList<OnboardingItem>()
+    private var lists = mutableListOf<OnboardingItem>()
     private var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
+
+        setFullContent()
+
+        supportActionBar?.hide()
+
         setContentView(binding.root)
 
         setupUI()
+
+        observerEvents()
+    }
+
+    private fun setFullContent() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
     }
 
     private fun setupUI() {
 
-        val lists = listOf(
-            OnboardingItem(
-                title = "WELCOME TO \n Monumental habits",
-                description = "We can help you to be a better version of yourself.",
-                image = R.drawable.ic_onboarding_welcome
-            ),
-            OnboardingItem(
-                title = "CREATE NEW \n HABIT EASILY",
-                description = "We can help you to be a better version of yourself.",
-                image = R.drawable.ic_onboarding_habit
-            ),
-            OnboardingItem(
-                title = "KEEP TRACK OF YOUR \n PROGRESS",
-                description = "We can help you to be a better version of yourself.",
-                image = R.drawable.ic_onboarding_progress
-            ),
-            OnboardingItem(
-                title = "JOIN A SUPPORTIVE \n COMMUNITY",
-                description = "We can help you to be a better version of yourself.",
-                image = R.drawable.ic_onboarding_community_support
-            )
-        )
-        listScreen.addAll(lists)
+        mViewPager = OnboardingViewPagerAdapter(this, viewModel.lists)
 
-        viewPager = OnboardingViewPagerAdapter(this,listScreen)
-        binding.viewPager.adapter = viewPager
+        binding.apply {
+            viewPager.adapter = mViewPager
+            dotsIndicator.attachTo(viewPager)
+        }
 
-        binding.tabIndicator.setupWithViewPager(binding.viewPager)
 
-        binding.tabIndicator.addOnTabSelectedListener(object :
-            TabLayout.BaseOnTabSelectedListener<TabLayout.Tab?> {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
+        binding.tvNext.setOnClickListener {
+            viewModel.onEvent(OnboardingEvent.NextEvent)
+        }
+
+        binding.tvSkip.setOnClickListener {
+           viewModel.onEvent(OnboardingEvent.SkipEvent)
+        }
+    }
+
+    private fun observerEvents() {
+        lifecycleScope.launchWhenCreated {
+            viewModel.viewEffect.collect {
+                observerEffects(it)
+            }
+        }
+    }
+    private fun observerEffects(effect: OnboardingViewEffect) {
+        when (effect) {
+            OnboardingViewEffect.GetStartedViewEffect -> {
 
             }
+            OnboardingViewEffect.NextViewEffect -> {
+                actionByNext()
+            }
+            OnboardingViewEffect.SkipViewEffect -> {
+                actionBySkip()
+            }
+        }
+    }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-        })
+    private fun actionBySkip() {
+        binding.viewPager.currentItem = viewModel.lists.size - 1
+        setVisible()
+    }
+
+    private fun actionByGetStarted() {
+
+    }
+
+    private fun actionByNext() {
+        position = binding.viewPager.currentItem
+
+        if (position < viewModel.lists.size) {
+            position++
+            binding.viewPager.currentItem = position
+        }
+        if (position == viewModel.lists.size - 1) {
+            setVisible()
+        }
+    }
+
+    private fun setVisible() = with(binding) {
+        tvNext.hide()
+        tvSkip.hide()
+        dotsIndicator.hide()
+
+        btnGetStarted.show()
     }
 }
