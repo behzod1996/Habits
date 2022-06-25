@@ -34,6 +34,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    viewBinding.isEnabled = true
 }
 
 dependencies {
@@ -43,7 +45,7 @@ dependencies {
 
     implementation ("androidx.core:core-ktx:1.7.0")
     implementation ("androidx.appcompat:appcompat:1.4.2")
-    implementation ("com.google.android.material:material:1.6.1")
+    implementation ("com.google.android.material:material:1.3.0")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
@@ -67,6 +69,7 @@ dependencies {
     implementation(project(":common-ui"))
     implementation(project(":feature-splash"))
     implementation(project(":feature-onboarding"))
+    implementation(project(":feature-home"))
 }
 
 kapt {
