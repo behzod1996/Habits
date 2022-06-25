@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/common-ui/src/main/res/font/fonts.xml" value="0.23703703703703705" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/bg_button.xml" value="0.147" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/indicator_default.xml" value="0.128" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/indicator_selected.xml" value="0.128" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/indicator_selector.xml" value="0.128" />
-        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/layout/activity_onboarding.xml" value="0.264" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/tab_indicator.xml" value="0.1" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/layout/activity_onboarding.xml" value="0.10648148148148148" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/layout/onboarding_screen.xml" value="0.2" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-splash/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
       </map>
