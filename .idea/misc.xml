@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/app/src/main/res/drawable/bg_rounded.xml" value="0.1" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/app/src/main/res/drawable/ic_community.xml" value="0.1" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/app/src/main/res/layout/activity_main.xml" value="0.11901081916537867" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/app/src/main/res/menu/bottom_menu.xml" value="0.18425925925925926" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/common-ui/src/main/res/font/fonts.xml" value="0.23703703703703705" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-home/src/main/res/drawable/ic_home.xml" value="0.1535" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-home/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-home/src/main/res/layout/row_quote.xml" value="0.4" />
+        <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-home/src/main/res/menu/bottom_navigation.xml" value="0.253125" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/bg_button.xml" value="0.147" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/indicator_default.xml" value="0.128" />
         <entry key="..\:/Users/Behzod/AndroidStudioProjects/Habits/feature-onboarding/src/main/res/drawable/indicator_selected.xml" value="0.128" />

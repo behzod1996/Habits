@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/courseFragment"
+        android:title="@string/course"
+        android:icon="@drawable/ic_cources"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/communityFragment"
+        android:title="@string/community"
+        android:icon="@drawable/ic_community"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/settingFragment"
+        android:title="@string/setting"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="ifRoom"
+        />
+</menu>

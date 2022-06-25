@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quote">We first make our habits, \n and then our habits \n makes us.</string>
+    <string name="author">-Anonymous</string>
+    <string name="content_quote">Content quote</string>
+    <string name="home">Home</string>
+    <string name="course">Course</string>
+    <string name="community">Community</string>
+    <string name="setting">Setting</string>
+    <string name="homepage">Homepage</string>
+</resources>
