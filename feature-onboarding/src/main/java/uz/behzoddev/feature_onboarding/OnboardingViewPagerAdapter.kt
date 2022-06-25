@@ -11,8 +11,8 @@ import androidx.viewpager.widget.PagerAdapter
 private val LAYOUT_ID = R.layout.onboarding_screen
 
 class OnboardingViewPagerAdapter(
-    val context: Context,
-    listScreen: List<OnboardingItem>
+    private val context: Context,
+    screens: List<OnboardingItem>
 ): PagerAdapter() {
 
     private var listScreen: List<OnboardingItem>
@@ -45,11 +45,13 @@ class OnboardingViewPagerAdapter(
         return view == `object`
     }
 
+
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
     }
 
+
     init {
-        this.listScreen = listScreen
+        this.listScreen = screens
     }
 }
