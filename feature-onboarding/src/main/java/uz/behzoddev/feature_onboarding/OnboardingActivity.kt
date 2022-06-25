@@ -10,15 +10,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.behzoddev.common_ui.extensions.hide
 import uz.behzoddev.common_ui.extensions.show
 import uz.behzoddev.feature_onboarding.databinding.ActivityOnboardingBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var navigator: OnboardingNavigator
 
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var mViewPager: OnboardingViewPagerAdapter
     private val viewModel: OnboardingViewModel by viewModels()
 
-    private var lists = mutableListOf<OnboardingItem>()
     private var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +65,10 @@ class OnboardingActivity : AppCompatActivity() {
         binding.tvSkip.setOnClickListener {
            viewModel.onEvent(OnboardingEvent.SkipEvent)
         }
+
+        binding.btnGetStarted.setOnClickListener {
+            viewModel.onEvent(OnboardingEvent.GetStartedEvent)
+        }
     }
 
     private fun observerEvents() {
@@ -71,10 +78,11 @@ class OnboardingActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun observerEffects(effect: OnboardingViewEffect) {
         when (effect) {
             OnboardingViewEffect.GetStartedViewEffect -> {
-
+                actionByGetStarted()
             }
             OnboardingViewEffect.NextViewEffect -> {
                 actionByNext()
@@ -91,7 +99,7 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun actionByGetStarted() {
-
+        navigator.navigateToHome()
     }
 
     private fun actionByNext() {
@@ -105,6 +113,7 @@ class OnboardingActivity : AppCompatActivity() {
             setVisible()
         }
     }
+
 
     private fun setVisible() = with(binding) {
         tvNext.hide()
