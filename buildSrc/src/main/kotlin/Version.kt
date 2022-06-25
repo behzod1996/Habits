@@ -33,5 +33,5 @@ object Version {
     const val serializationVersion = "1.2.2"
     const val viewPagerVersion = "1.0.0"
     const val roundImageViewVersion = "2.3.0"
-
+    const val roomVersion = "2.4.2"
 }
