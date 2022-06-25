@@ -24,18 +24,24 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         setupUI()
+
+        setContentView(binding.root)
 
         observeEvents()
     }
 
     private fun setupUI() {
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
+        supportActionBar?.hide()
 
     }
 
