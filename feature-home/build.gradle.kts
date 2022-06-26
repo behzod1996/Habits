@@ -56,5 +56,6 @@ dependencies {
     lifecycleViewModel()
     fragmentKtx()
 
+    implementation ("com.github.tejpratap46:RecyclerCalendarAndroid:2.0.1")
     implementation(project(":common-ui"))
 }
