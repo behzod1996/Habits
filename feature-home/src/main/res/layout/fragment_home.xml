@@ -32,7 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_homepage" />
 
-
     <ImageView
         android:id="@+id/iv_background"
         android:layout_width="match_parent"
@@ -47,5 +46,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_quote"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tv_title_habits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rv_calendar"
+        app:layout_constraintBottom_toBottomOf="@id/rv_calendar"
+        android:text="Habits"
+        android:layout_marginStart="50dp"
+        android:textColor="@color/egg_plant"
+        android:fontFamily="@font/klasik_regular"
+        android:textSize="25sp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_calendar"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/row_calendar"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/layout_quote"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_homepage"
+        android:layout_marginEnd="20dp"
+        tools:itemCount="5"
+        />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
