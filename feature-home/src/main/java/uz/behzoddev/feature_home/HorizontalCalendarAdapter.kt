@@ -1,0 +1,165 @@
+package uz.behzoddev.feature_home
+
+import android.content.Context
+import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.tejpratapsingh.recyclercalendar.adapter.RecyclerCalendarBaseAdapter
+import com.tejpratapsingh.recyclercalendar.model.RecyclerCalendarConfiguration
+import com.tejpratapsingh.recyclercalendar.model.RecyclerCalenderViewItem
+import com.tejpratapsingh.recyclercalendar.utilities.CalendarUtils
+import java.util.*
+
+class HorizontalCalendarAdapter(
+    startDate: Date,
+    endDate: Date,
+    private val configuration: RecyclerCalendarConfiguration,
+    private var selectedDate: Date,
+    private val dateSelectListener: OnDateSelected
+) : RecyclerCalendarBaseAdapter(startDate, endDate, configuration) {
+
+    interface OnDateSelected {
+        fun onDateSelected(date: Date)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.row_calendar, parent, false)
+        return MonthCalendarViewHolder(
+            view
+        )
+    }
+
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        position: Int,
+        calendarItem: RecyclerCalenderViewItem
+    ) {
+        val monthViewHolder: MonthCalendarViewHolder = holder as MonthCalendarViewHolder
+        val context: Context = monthViewHolder.itemView.context
+        monthViewHolder.itemView.visibility = View.VISIBLE
+
+        monthViewHolder.itemView.setOnClickListener(null)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+
+        } else {
+
+        }
+
+        monthViewHolder.textViewDay.setTextColor(
+            ContextCompat.getColor(
+                context,
+                uz.behzoddev.common_ui.R.color.sunshade
+            )
+        )
+        monthViewHolder.textViewDate.setTextColor(
+            ContextCompat.getColor(
+                context,
+                uz.behzoddev.common_ui.R.color.sunshade
+            )
+        )
+
+        if (calendarItem.isHeader) {
+            val selectedCalendar = Calendar.getInstance()
+            selectedCalendar.time = calendarItem.date
+
+            val month: String = CalendarUtils.dateStringFromFormat(
+                locale = configuration.calendarLocale,
+                date = selectedCalendar.time,
+                format = CalendarUtils.DISPLAY_MONTH_FORMAT
+            ) ?: ""
+            val year = selectedCalendar[Calendar.YEAR].toLong()
+
+            monthViewHolder.textViewDay.text = year.toString()
+            monthViewHolder.textViewDate.text = month
+
+            monthViewHolder.itemView.setOnClickListener(null)
+
+        } else if (calendarItem.isEmpty) {
+            monthViewHolder.itemView.visibility = View.GONE
+            monthViewHolder.textViewDay.text = ""
+            monthViewHolder.textViewDate.text = ""
+        } else {
+
+            val calendarDate = Calendar.getInstance()
+            calendarDate.time = calendarItem.date
+
+            val stringCalendarTimeFormat: String =
+                CalendarUtils.dateStringFromFormat(
+                    locale = configuration.calendarLocale,
+                    date = calendarItem.date,
+                    format = CalendarUtils.DB_DATE_FORMAT
+                )
+                    ?: ""
+            val stringSelectedTimeFormat: String =
+                CalendarUtils.dateStringFromFormat(
+                    locale = configuration.calendarLocale,
+                    date = selectedDate,
+                    format = CalendarUtils.DB_DATE_FORMAT
+                ) ?: ""
+
+            if (stringCalendarTimeFormat == stringSelectedTimeFormat) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    monthViewHolder.cardView.setCardBackgroundColor(
+                        ContextCompat.getColor(
+                            context,
+                            uz.behzoddev.common_ui.R.color.white
+                        )
+                    )
+                } else {
+                    monthViewHolder.itemView.setBackgroundDrawable(
+                        ContextCompat.getDrawable(
+                            context,
+                            R.drawable.ic_round_filled
+                        )
+                    )
+                }
+                monthViewHolder.textViewDay.setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        uz.behzoddev.common_ui.R.color.egg_plant
+                    )
+                )
+                monthViewHolder.textViewDate.setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        uz.behzoddev.common_ui.R.color.egg_plant
+                    )
+                )
+            }
+
+            val day: String = CalendarUtils.dateStringFromFormat(
+                locale = configuration.calendarLocale,
+                date = calendarDate.time,
+                format = CalendarUtils.DISPLAY_WEEK_DAY_FORMAT
+            ) ?: ""
+
+            monthViewHolder.textViewDay.text = day
+
+            monthViewHolder.textViewDate.text =
+                CalendarUtils.dateStringFromFormat(
+                    locale = configuration.calendarLocale,
+                    date = calendarDate.time,
+                    format = CalendarUtils.DISPLAY_DATE_FORMAT
+                ) ?: ""
+
+            monthViewHolder.itemView.setOnClickListener {
+                selectedDate = calendarItem.date
+                dateSelectListener.onDateSelected(calendarItem.date)
+                notifyDataSetChanged()
+            }
+        }
+    }
+
+    class MonthCalendarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textViewDay: TextView = itemView.findViewById(R.id.tv_week)
+        val textViewDate: TextView = itemView.findViewById(R.id.textCalenderItemHorizontalDate)
+        val cardView : CardView = itemView.findViewById(R.id.cv_calendar)
+    }
+}
