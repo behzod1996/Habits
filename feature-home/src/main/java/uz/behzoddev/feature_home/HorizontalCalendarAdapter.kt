@@ -46,22 +46,16 @@ class HorizontalCalendarAdapter(
 
         monthViewHolder.itemView.setOnClickListener(null)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-
-        } else {
-
-        }
-
         monthViewHolder.textViewDay.setTextColor(
             ContextCompat.getColor(
                 context,
-                uz.behzoddev.common_ui.R.color.sunshade
+                uz.behzoddev.common_ui.R.color.orange
             )
         )
         monthViewHolder.textViewDate.setTextColor(
             ContextCompat.getColor(
                 context,
-                uz.behzoddev.common_ui.R.color.sunshade
+                uz.behzoddev.common_ui.R.color.orange
             )
         )
 
@@ -106,19 +100,14 @@ class HorizontalCalendarAdapter(
 
             if (stringCalendarTimeFormat == stringSelectedTimeFormat) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    monthViewHolder.cardView.setCardBackgroundColor(
-                        ContextCompat.getColor(
-                            context,
-                            uz.behzoddev.common_ui.R.color.white
-                        )
-                    )
-                } else {
-                    monthViewHolder.itemView.setBackgroundDrawable(
+                    monthViewHolder.itemView.background =
                         ContextCompat.getDrawable(
                             context,
-                            R.drawable.ic_round_filled
+                            R.drawable.ic_selected_round_filled
                         )
-                    )
+
+                } else {
+
                 }
                 monthViewHolder.textViewDay.setTextColor(
                     ContextCompat.getColor(
